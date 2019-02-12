@@ -40,8 +40,33 @@ def dt():
 @app.route("/tmpl")
 def t():
     name = {'first' : 'HyunOuk', 'second' : 'HyunMin'}
-    return render_template('index.html', title="Title", name=name)
+    lst2 = [ ("만남1", "김건모", False), ("만남2", "노사연", True), ("만남3", "노사봉",False), ("만남4", "아무개",True) ]
+    a = (1, "만남1", "김건모", False, [])
+    b = (2, "만남2", "노사연", True, [a])
+    c = (3, "만남3", "익명", False, [a,b])
+    d = (4, "만남4", "익명", False, [a,b,c])
+    return render_template('index.html', title="Title", lst2=lst2, lst=[a,b,c,d])
 
+@app.route("/trythis")
+def prac():
+    a_1 = ("파이썬", "https://www.naver.com", [])
+    a_2 = ("자바","https://www.naver.com", [])
+    b_1_1 = ("jinja", "https://www.naver.com",[])
+    b_1_2 = ("Genshi Cheetah","https://www.naver.com", [])
+    b_1 = ("플라스크", "https://www.naver.com",[b_1_1, b_1_2])
+    b_2 = ("스프링","https://www.naver.com", [])
+    b_3 = ("노드JS", "https://www.naver.com",[])
+    c_1 = ("나의 일상","https://www.naver.com", [])
+    c_2 = ("이슈 게시판", "https://www.naver.com",[])
+    a = ("프로그래밍 언어","https://www.naver.com", [a_1, a_2])
+    b = ("웹 프레임워크","https://www.naver.com", [b_1, b_2, b_3])
+    c = ("기타", "https://www.naver.com",[c_1,c_2])
+
+    return render_template('trythis.html', lst=[a,b,c])
+
+@app.route('/practice')
+def practice():
+    return render_template('p_main.html')
 
 @app.route('/wc')
 def make_cookie():

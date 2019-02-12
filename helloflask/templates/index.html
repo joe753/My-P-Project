@@ -7,10 +7,23 @@
     <title>Jinja Test Page </title>
 </head>
 <body>
-    <div>Jinja Test : {{title}}, {{name.second}}</div>
+    <ul>
+    {% for title, name, isShow in lst2 %}
+    <li>{{title}}: {{name}} - {{loop.first}} {% if title == '만남1' %} 노사연 {% elif title == '만남2'%} 노사봉 {% else %} 엘스 {% endif %}</li>
+    {% endfor %}
+    
+    </ul>
     <hr>
+    <ul>
+        {% for rank, title, name, hide, ref in lst recursive %}
+        <li>
+            {{title}}: {{name}}
+            <ul class="sub">{{ loop(ref) }}</ul>
+        </li>
+        {% endfor %}
+    </ul>
 
-   
+    <hr>
     <pre>
     ttt 한글
     {%- if True  -%}
