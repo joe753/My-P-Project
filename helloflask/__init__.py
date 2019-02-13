@@ -15,7 +15,7 @@ def ymd(fmt):
 @app.route('/dt')
 def dt():
     datestr = request.values.get('date', date.today(), type=ymd('%Y-%m-%d'))
-    return "우리나라 시간 형식: " + str(datestr)
+    return "우리나라 시간   형식: " + str(datestr)
 
 
 
@@ -67,6 +67,14 @@ def prac():
 @app.route('/practice')
 def practice():
     return render_template('p_main.html')
+
+@app.route('/practice/2')
+def pracitce1():
+    return render_template('p_main2.html')
+
+@app.route('/testt')
+def testt():
+    return render_template('tests.html')
 
 @app.route('/wc')
 def make_cookie():

@@ -1,0 +1,19 @@
+{% import "macro/ttt.html" as cm %}
+
+<p>{{ cm.test_macro('상세페이지') }}</p>
+<p>{{ cm.test_macro('나는') }}</p>
+
+
+{% macro test_macro2(name, class='instrument') -%}
+	<h3 class="{{class}}">
+		TEST MACRO2: {{name}}   
+		<div> {{caller(name)}} </div>
+	</h3>
+{%- endmacro %}
+
+
+
+{% call(x) test_macro2('Trombone') %}
+    dddd + {{x}}
+{% endcall %}
+
