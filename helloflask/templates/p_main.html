@@ -1,6 +1,8 @@
 {% extends "p_layout.html" %}
 {% import "macro/modal.html" as md %}
 {% block main %}
+
+
 <main>
     <div class="container">
 <!--Section: Products v.3-->
@@ -40,13 +42,13 @@
                             <strong>100,000 ￦</strong>
                         </h4>
                         <div class=inst>
-                            <button type="button" class="inst-btn btn-sm btn-outline-info waves-effect" data-toggle="modal" data-target="#basicExampleModal">
+                            <button type="button" class="inst-btn btn-sm btn-outline-info waves-effect" data-toggle="modal" data-target="#modal1">
                                 상세보기
                         </button>
                         <!-- Modal -->
-                            <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                            <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
-                                <div class="modal-dialog" role="document">
+                                <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">연주 상세보기</h5>
@@ -55,7 +57,82 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                        ...
+                                            <div class="row">
+                                                <div class= "card col-lg-4 text-left">
+                                                    <div class="modal-body mb-0 p-0">
+                                                        <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                                            <iframe class="embed-responsive-item" src="{{url_for ('static', filename='img/v_trombone.mp4') }}" allowfullscreen></iframe>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card col-lg-8">
+                                                    
+                                                    <div class="row border font-weight-bold">
+                                                        <div class="col-lg-6  text-center border-right">
+                                                                파트
+                                                        </div>
+                                                        <div class="col-lg-6 text-center" >
+                                                                연주날짜
+                                                        </div>
+                                                    </div>
+                                                    <div class="row border border-top-0">
+                                                        <div class="col-lg-6 text-center border-right">
+                                                                Trombone
+                                                        </div>
+                                                        <div class="col-lg-6 text-center">
+                                                                2019.02.28
+                                                        </div>
+                                                    </div>
+                                                    <div class="row border border-top-0 font-weight-bold">
+                                                        <div class="col-lg-6 text-center border-right">
+                                                                지역
+                                                        </div>
+                                                        <div class="col-lg-6 text-center">
+                                                                금액
+                                                        </div>
+                                                    </div>
+                                                    <div class="row border border-top-0">
+                                                        <div class="col-lg-6 text-center border-right">
+                                                                서울
+                                                        </div>
+                                                        <div class="col-lg-6 text-center">
+                                                                100,000 ￦
+                                                        </div>
+                                                    </div>
+                                                    {{md.bt_modal('인원', '1명', '복장', '정장')}}
+                                                    <div class="row border border-top-0">
+                                                        
+                                                    </div>
+                                                </div>  
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                
+                                                <div class="container text-left">
+                                                    <h3>&nbsp 상세정보</h3>
+                                                    <hr>
+                                                    <h3> {{mm}} 월</h3>
+                                                        <table>
+                                                            <thead>
+                                                                <tr>
+                                                                    {%- for w in '일월화수목금토' %}
+                                                                        <th>{{w}}</th>
+                                                                    {% endfor -%}
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                {% for row in range(sdt, edt) | batch(7, '&nbsp;') %}
+                                                                <tr>
+                                                                    {% for col in row %}
+                                                                        <td>{% if ((col|int) <= 0) %}&nbsp;{%else%}{{col | safe}}{%endif%}</td>
+                                                                    {% endfor %}
+                                                                </tr>
+                                                                {% endfor %}
+                                                            </tbody>
+                                                        </table>
+                                                </div>
+                                                <hr>
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

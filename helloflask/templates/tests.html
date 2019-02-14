@@ -1,19 +1,36 @@
-{% import "macro/ttt.html" as cm %}
-
-<p>{{ cm.test_macro('상세페이지') }}</p>
-<p>{{ cm.test_macro('나는') }}</p>
 
 
-{% macro test_macro2(name, class='instrument') -%}
-	<h3 class="{{class}}">
-		TEST MACRO2: {{name}}   
-		<div> {{caller(name)}} </div>
-	</h3>
-{%- endmacro %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>CentOS IRC meetings</title>
+</head>
+<body>
+    <div class="container text-center">
+        <table class="table">
+            <thead style="text-align: center">
+            </thead> 
+            <tr>{% for i in '일월화수목금토' %}
+                <td>
+                    {{i}}
+                </td>
+                {% endfor %}
+            </tr>
+            
+            {% for row in range(-4, 29) | batch(7, '&nbsp;') %}
+            <tr>{% for col in row %}
+                <td>{% if col|int > 0 %}
+                        {{ col | safe }}
+                    {% endif %}
+                </td>
+                {% endfor %}
+            </tr>
+                
+            {% endfor %}
+        </table>
+    </div>
+</body>
 
-
-
-{% call(x) test_macro2('Trombone') %}
-    dddd + {{x}}
-{% endcall %}
+</html>
 

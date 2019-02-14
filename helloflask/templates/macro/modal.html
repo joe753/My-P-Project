@@ -59,3 +59,22 @@
 
 </div>
 {%- endmacro %}
+
+{% macro bt_modal(title1, info1, title2, info2) -%}
+<div class="row border font-weight-bold">
+    <div class="col-lg-6  text-center border-right">
+            {{title1}}
+    </div>
+    <div class="col-lg-6 text-center" >
+            {{title2}}
+    </div>
+</div>
+<div class="row border border-top-0">
+    <div class="col-lg-6 text-center border-right">
+            {{info1}}
+    </div>
+    <div class="col-lg-6 text-center">
+            {{info2}}
+    </div>
+</div>
+{%- endmacro %}

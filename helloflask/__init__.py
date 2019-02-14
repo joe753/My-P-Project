@@ -1,15 +1,35 @@
 from flask import Flask, g, request, Response, make_response
 from flask import session, render_template, Markup
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
+from dateutil.relativedelta import relativedelta
+
 
 app = Flask(__name__)
 app.debug = True
 # app.jinja_env.trim_blocks = True
 
-
+@app.route('/date')
+def simpledate(dt):
+    if not isinstance(dt, date):
+        dt = datetime.strptime(dt, '%Y-%m-%d %H:%M')
+    
+    # upload_date = datetime.strptime(today.strftime('2019-02-11'), '%Y-%m-%d')
+    now = datetime.now()
+    print (upload_date)
+    if now - dt >= timedelta(1):
+        return upload_date.strftime('%m-%d')
+    else : 
+        return now.strftime('%H:%M')
+   
 def ymd(fmt):
     def trans(date_str):
-        return datetime.strptime(date_str, fmt)
+        upload_date = datetime.strptime(date_str, fmt)
+        now = datetime.now()
+        print (upload_date)
+        if now - upload_date >= timedelta(1):
+            return upload_date.strftime('%m-%d')
+        else : 
+            return now.strftime('%H:%M')
     return trans
 
 @app.route('/dt')
@@ -65,8 +85,14 @@ def prac():
     return render_template('trythis.html', lst=[a,b,c])
 
 @app.route('/practice')
-def practice():
-    return render_template('p_main.html')
+def date():
+    today = '2019-02-14 09:22'
+    d = datetime.strptime("2019-03-01", "%Y-%m-%d")
+    sdt = d.weekday() * -1
+    nextMonth = d + relativedelta(months=1)
+    mm = d.month
+    edt = (nextMonth - timedelta(1)).day + 1
+    return render_template('p_main.html',mm = mm, sdt=sdt, edt=edt, today=today)
 
 @app.route('/practice/2')
 def pracitce1():
